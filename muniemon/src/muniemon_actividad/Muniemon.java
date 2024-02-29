@@ -14,9 +14,6 @@ public class Muniemon {
 	}
 	
 
-	
-
-
 	public Muniemon(String nombre, int vida, int ataque, int defensa, Tipo tipo) {
 		super();
 		this.nombre = nombre;
@@ -30,9 +27,6 @@ public class Muniemon {
 	public Muniemon() {
 		
 	}
-
-
-
 
 
 	public String getNombre() {
@@ -74,6 +68,28 @@ public class Muniemon {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
+	
+	public void atacar(Muniemon objetivo) {
+		if (this.vida > 0) {
+			int danioRealizado = 0;
+            danioRealizado = this.ataque - objetivo.getDefensa();
+            if (danioRealizado < 0) {
+                danioRealizado = 0; // No puede hacer daño negativo
+            }
+            objetivo.vida -= danioRealizado;
+            System.out.println("==============================================================");
+            System.out.println(this.nombre + " ataca a " + objetivo.getNombre() + " y le hace " 
+            + danioRealizado + " puntos de daño.");
+            System.out.println(objetivo.getNombre() + " tiene " + objetivo.getVida() + " puntos de vida.");
+            System.out.println("==============================================================");
+            if (objetivo.vida <= 0) {
+                System.out.println(objetivo.getNombre() + " ha sido derrotado.");
+                objetivo.vida = 0;
+            }
+        } else {
+            System.out.println(this.nombre + " no puede atacar porque está muerto.");
+        }
+    }
 	
 	
 	
